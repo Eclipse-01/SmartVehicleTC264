@@ -52,19 +52,26 @@ int core0_main(void)
     hip4082_init();                 // 初始化电机驱动
     ips200_show_string(0, 80, "Motor Init OK!"); // 显示字符串
     servo_init();                   // 初始化舵机
+    servo_set_position(0);          // 舵机归位
     ips200_show_string(0, 96, "Servo Init OK!"); // 显示字符串
+    wireless_uart_init();           // 初始化无线串口
+    ips200_show_string(0, 112, "Wireless Init OK!"); // 显示字符串
+    wireless_uart_send_string("Wireless Init OK!"); // 发送字符串
+    ips200_show_string(0, 128, __TIME__); // 显示字符串
+    ccd_init();                     // 初始化摄像头
+    ips200_show_string(0, 64, "Camera Init OK!"); // 显示字符串
 
 
 
     // 此处编写用户代码 例如外设初始化代码等
     cpu_wait_event_ready();         // 等待所有核心初始化完毕
-    cam_init();                     // 初始化摄像头
-    ips200_show_string(0, 64, "Camera Init OK!"); // 显示字符串
     system_delay_ms(1000);          // 延时1s
     straint_follow();               // 启动跟随策略
     while (TRUE)
     {
         // 此处编写需要循环执行的代码
+        wireless_uart_send_string("Wireless Uart is sending string!"); // 发送字符串
+        system_delay_ms(500);          // 延时1s
         // 此处编写需要循环执行的代码
     }
 }

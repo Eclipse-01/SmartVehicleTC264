@@ -2,6 +2,7 @@
 {
     "files.encoding": "gbk",
     "files.associations": {
-        "zf_common_headfile.h": "c"
+        "zf_common_headfile.h": "c",
+        "controller.h": "c"
     }
 }

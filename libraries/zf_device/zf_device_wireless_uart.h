@@ -52,7 +52,7 @@
 #include "zf_common_typedef.h"
 //================================================定义 无线串口 基本配置===================================================
 #define WIRELESS_UART_INDEX         (UART_2)                                    // 无线串口对应使用的串口号
-#define WIRELESS_UART_BUAD_RATE     (115200)                                    // 无线串口对应使用的串口波特率
+#define WIRELESS_UART_BUAD_RATE     (460800)                                    // 无线串口对应使用的串口波特率
 #define WIRELESS_UART_TX_PIN        (UART2_RX_P10_6)                            // 无线串口对应模块的 TX 要接到单片机的 RX
 #define WIRELESS_UART_RX_PIN        (UART2_TX_P10_5)                            // 无线串口对应模块的 RX 要接到单片机的 TX
 #define WIRELESS_UART_RTS_PIN       (P10_2)                                     // 无线串口对应模块的 RTS 引脚

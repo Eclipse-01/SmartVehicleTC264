@@ -17,8 +17,8 @@
 
 #define SERVO_MOTOR_PWM ATOM1_CH1_P33_9 /**< 舵机的PWM通道 */
 #define SERVO_MOTOR_FREQ 50 /**< 舵机PWM信号的频率 */
-#define SERVO_MAX 50 /**< 舵机的最大角度 */
-#define SERVO_CENTER 780 /**< 舵机的中心位置 */
+#define SERVO_MAX 60 /**< 舵机的最大角度 */
+#define SERVO_CENTER 500 /**< 舵机的中心位置 */
 
 #include "zf_common_headfile.h"
 #include "hw_drv.h"
@@ -63,8 +63,8 @@ void hip4082_set_duty(int8 left_duty, int8 right_duty)
     }
     else
     {
-        pwm_set_duty(PWM_1, left_duty * 50);
-        pwm_set_duty(PWM_2, 0);
+        pwm_set_duty(PWM_1, 0);
+        pwm_set_duty(PWM_2, (-left_duty) * 50);
     }
 
     // 右侧电机控制
@@ -75,8 +75,8 @@ void hip4082_set_duty(int8 left_duty, int8 right_duty)
     }
     else
     {
-        pwm_set_duty(PWM_3, 0);
-        pwm_set_duty(PWM_4, right_duty * 50);
+        pwm_set_duty(PWM_3, (-right_duty) * 50);
+        pwm_set_duty(PWM_4, 0);
     }
 }
 
@@ -99,7 +99,7 @@ void servo_set_position(int16 angle)
     {
         angle = -SERVO_MAX;
     }
-    pulseWide = (SERVO_CENTER + angle);
+    pulseWide = (SERVO_CENTER - angle);
     pwm_set_duty(SERVO_MOTOR_PWM, pulseWide);
     servo_position = angle;
 }

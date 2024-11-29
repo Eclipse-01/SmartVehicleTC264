@@ -5,9 +5,9 @@
 /**
  * @brief 调节PID参数并控制舵机和电机。
  */
-#define KP 1.0
-#define KI 0.1
-#define KD 0.1
+#define KP 1.52
+#define KI 0
+#define KD 1.72
 #define MAX_INTEGRAL 1000
 #define MAX_DERIVATIVE 1000
 
@@ -18,7 +18,7 @@ void straint_follow()
 {
     while(1){
         PID_straint();
-        hip4082_set_duty(30, 30);
+        hip4082_set_duty(25, 25);
         system_delay_ms(10);
     }
 }
