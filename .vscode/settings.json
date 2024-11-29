@@ -1,4 +1,7 @@
 
 {
-    "files.encoding": "gbk"
+    "files.encoding": "gbk",
+    "files.associations": {
+        "zf_common_headfile.h": "c"
+    }
 }
