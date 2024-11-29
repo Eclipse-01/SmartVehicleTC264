@@ -235,11 +235,10 @@ int ccd_turnings(void)
             if (ccd_line[i][j] == 0)
                 count++;
         }
-        if (count > TURNINGS_THRESHOLD)
-            return 1;
-        else
+        if (count <= TURNINGS_THRESHOLD)
             return 0;
     }
+    return 1;
 }
 
 
