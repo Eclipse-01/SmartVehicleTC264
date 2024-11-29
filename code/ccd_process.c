@@ -33,8 +33,8 @@
 #define CCD_NUMS 5            // 模拟CCD传感器采样的行数量
 #define NOISE_THRESHOLD 5     // 噪声阈值
 
-#define TURNINGS_CCD_LOCATION 110 //入弯时CCD传感器的起始行
-#define TURNINGS_THRESHOLD 130    //入弯时CCD传感器的阈值
+#define TURNINGS_CCD_LOCATION 140 //入弯时CCD传感器的起始行
+#define TURNINGS_THRESHOLD 80    //入弯时CCD传感器的阈值
 
 unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH];    // 原始图像
 unsigned char ccd_line[CCD_NUMS + 1][IMAGE_WIDTH]; // CCD传感器采样的图像
@@ -138,7 +138,7 @@ int image_process()
 
 int ccd_error(int row)
 {
-    ips200_displayimage03x((const uint8 *)image, MT9V03X_W, MT9V03X_H);
+    //ips200_displayimage03x((const uint8 *)image, MT9V03X_W, MT9V03X_H);
     int left_edge;
     int right_edge;
     // 先看左边缘，从中央往左找。当找到连续NOISE_THRESHOLD个黑点时，认为找到了左边缘
@@ -248,6 +248,14 @@ int ccd_trace(void)
     image_process();
     if (ccd_turnings())
     {
+        wireless_uart_read_buffer("Entering turning handler", 25);
+        wireless_uart_read_buffer("Entering turning handler", 25);
+        wireless_uart_read_buffer("Entering turning handler", 25);
+        wireless_uart_read_buffer("Entering turning handler", 25);
+        wireless_uart_read_buffer("Entering turning handler", 25);
+        wireless_uart_read_buffer("Entering turning handler", 25);
+        wireless_uart_read_buffer("Entering turning handler", 25);
+        wireless_uart_read_buffer("Entering turning handler", 25);
         int errors = 0;
         for (int i = 1; i < CCD_NUMS; i++)
         {
@@ -257,7 +265,7 @@ int ccd_trace(void)
         char str[64];
         sprintf(str, "Current error: %d\n", finals);
         wireless_uart_send_buffer(str, strlen(str));
-        return finals;
+        return finals * 1.5;
     }
     else
     {
